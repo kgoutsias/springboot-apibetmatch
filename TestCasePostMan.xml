@@ -1,0 +1,100 @@
+TEST CASES
+
+To get Document guide from Swagger2: GET http://localhost:8080/v2/api-docs
+
+
+To get all matches: GET http://localhost:8080/matches
+
+
+
+To get a specific match by ID: GET http://localhost:8080/matches/{id}
+
+
+
+To create a new match: POST http://localhost:8080/matches
+
+	{
+        "description": "AEK-PAO",
+        "matchDate": "2023-07-22",
+        "matchTime": "22:34",
+        "teamA": "AEK",
+        "teamB": "PAO",
+        "sport": "Football",
+        "matchOdds": [
+            {
+             "specifier": "1",
+             "odd": "1.87"
+            },
+            {
+                "specifier": "2",
+                "odd": "2.87"
+            }
+            ,
+            {
+                "specifier": "X",
+                "odd": "3.87"
+            }
+        ]
+        
+    }
+
+
+To update a match: PUT http://localhost:8080/matches/{id}
+
+	{
+        "description": "AEK-PAO",
+        "matchDate": "2023-07-22",
+        "matchTime": "22:34",
+        "teamA": "AEK",
+        "teamB": "PAO",
+        "sport": "Basketball",
+        "matchOdds": [
+            {
+             "specifier": "1",
+             "odd": "1.87"
+            },
+            {
+                "specifier": "2",
+                "odd": "2.87"
+            }
+            ,
+            {
+                "specifier": "X",
+                "odd": "3.87"
+            }
+        ]
+        
+    }
+
+
+
+To delete a match: DELETE http://localhost:8080/matches/{id}
+
+--------------------------------------------------------------------------------
+
+Setup application.properties 
+
+spring.datasource.url=jdbc:mysql://localhost:3306/bet?usessl=false
+spring.datasource.username=root
+spring.datasource.password=123456
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.generate = true
+spring.jpa.show-sql = true
+
+--------------------------------------------------------------------------------
+Run jar from cmd:
+java -jar springboot-apibetmatch-0.0.1-SNAPSHOT.jar
+--------------------------------------------------------------------------------
+
+Docker build
+Terminal
+docker images
+
+Build the Docker image using the following command:
+docker build -t your-image-name .
+
+Run your application in a Docker container using the following command:
+docker run -p 8080:8080 your-image-name
